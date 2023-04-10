@@ -21,6 +21,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE u.username=:username")
     User getUserFromUsername(String username);
 
+    @Query("SELECT  u.barcode from User u where u.id=:id")
+    byte[] getBarcodeById(long id);
 
 
 }

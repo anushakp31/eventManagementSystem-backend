@@ -39,7 +39,7 @@ import java.util.concurrent.TimeoutException;
 
     public static void sendMessageToBroker(String userId, String data, String routingKey) throws IOException, TimeoutException, IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("18.219.9.194");
+        factory.setHost("$host");
         factory.setPort(5672);
         factory.setUsername("guest");
         factory.setPassword("guest");

@@ -132,10 +132,10 @@ public class AuthController {
         user.setPhNo(signUpDto.getPhNo());
         user.setZipcode(signUpDto.getZipcode());
         user.setUtaId(signUpDto.getUtaId());
-        Long utaId=user.getUtaId();
-        String utaId1=utaId.toString();
+        Long id=user.getId();
+        String id1=id.toString();
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
-        byte[] barcode= ZXingHelper.createBarCodeImage(utaId1,200,100);
+        byte[] barcode= ZXingHelper.createBarCodeImage(id1,200,100);
         user.setBarcode(barcode);
 
         Role roles = roleRepository.findByName("ROLE_USER").get();

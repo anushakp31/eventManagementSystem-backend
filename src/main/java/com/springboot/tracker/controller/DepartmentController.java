@@ -1,9 +1,14 @@
 package com.springboot.tracker.controller;
 
 import com.springboot.tracker.entity.Department;
+import com.springboot.tracker.entity.User;
 import com.springboot.tracker.payload.DepartmentDto;
 import com.springboot.tracker.repository.DepartmentRepo;
+import com.springboot.tracker.repository.UserRepository;
 import com.springboot.tracker.security.service.DepartmentService;
+import lombok.var;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +16,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
@@ -25,6 +32,7 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
     private DepartmentService departmentService;
+
 
     //Creating an event
     @PreAuthorize("hasRole('ADMIN')")
@@ -76,5 +84,7 @@ public class DepartmentController {
         departmentService.deleteDepartmentById(id);
         return new ResponseEntity<>("Department deleted successfully",HttpStatus.OK);
     }
+
+
 }
 

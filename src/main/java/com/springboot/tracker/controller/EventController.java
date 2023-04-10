@@ -121,5 +121,16 @@ public class EventController {
         System.out.println(userJson.get("barcode"));
         return user;
     }
+@RequestMapping(value = "barcode/{id}", method = RequestMethod.GET)
+public void barcode(@PathVariable("id") long id, HttpServletResponse response) throws Exception {
+    response.setContentType("image/png");
+    OutputStream outputStream = response.getOutputStream();
+    //outputStream.write(ZXingHelper.createBarCodeImage(id, 200, 200));
+    byte[] bytes= userRepository.getBarcodeById(id);
+    outputStream.write(bytes);
+    outputStream.flush();
+    outputStream.close();
+
+}
 
 }
